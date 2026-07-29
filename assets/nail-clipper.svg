@@ -1,0 +1,16 @@
+<svg viewBox="0 0 60 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFB3C8"/>
+      <stop offset="1" stop-color="#FF6F91"/>
+    </linearGradient>
+  </defs>
+  <!-- 下把手 -->
+  <rect x="18" y="46" width="24" height="30" rx="12" fill="url(#cg)" stroke="#E23E63" stroke-width="2"/>
+  <!-- 上扳手 -->
+  <path d="M14 46 Q9 22 27 11 L35 19 Q22 27 27 46 Z" fill="#FFD0DC" stroke="#E23E63" stroke-width="2"/>
+  <!-- 刀刃 -->
+  <path d="M30 13 L47 40 L38 47 L26 21 Z" fill="#FFE8EE" stroke="#E23E63" stroke-width="2"/>
+  <!-- 转轴 -->
+  <circle cx="30" cy="45" r="4" fill="#fff" stroke="#E23E63" stroke-width="2"/>
+</svg>
