@@ -2,7 +2,7 @@
  * 首次访问后把图片/页面存进手机，之后打开秒开、不重复下载。
  * 部署更新时改下面 CACHE 的版本号（如 JIBI-V1→V2）即可强制刷新缓存。
  */
-const CACHE = 'JIBI-V1';
+const CACHE = 'JIBI-V2';
 
 self.addEventListener('install', function () {
   self.skipWaiting();
