@@ -814,6 +814,12 @@ body.mani-cursor #maniCursor{display:block;}
   .iv-aura{filter:none;}
   /* 顶部标题/弹层的 backdrop-filter 模糊在手机上也会掉帧，关掉 */
   .topbar-title h1,.lucky-ov{backdrop-filter:none;-webkit-backdrop-filter:none;}
+  /* 旋转光环（彩色锥形渐变每帧重绘，手机最耗电）→ 静止，不转 */
+  .portal{animation:none;}
+  /* 关掉纯装饰的常驻动画，减轻手机后台负担（不影响任何玩法） */
+  .topbar-cat,.topbar-deco-heart,.topbar-deco-star,
+  .bottle-slot .bottle-img,.bottle-slot.done .bottle-img,
+  .iv-cat,.heart-core,.game-card.blindbox::after{animation:none;}
 }
 </style>
 </head>
@@ -3333,6 +3339,14 @@ document.querySelector('#pProps .ptool-btn[data-tool="iron"]').onclick=doIron;
   };
 })();
 buildPalette();buildGrid();renderGallery();syncPPropsUI();applyPerlerCursor();
+</script>
+<script>
+/* 离线缓存：首次加载后把素材存手机，下次打开秒开、不卡 */
+if('serviceWorker' in navigator){
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('sw.js').catch(function(){/* 失败也不影响使用 */});
+  });
+}
 </script>
 </body>
 </html>
