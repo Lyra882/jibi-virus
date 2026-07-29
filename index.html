@@ -7,7 +7,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>击毙病毒 · 猫护士康复室</title>
+<title>击毙病毒</title>
 <link href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -837,7 +837,7 @@ body.mani-cursor #maniCursor{display:block;}
   <div class="intro-box">
     <img class="intro-mascot" src="assets/mascot.png" alt="">
     <h3>嗨！我是猫护士 🐱</h3>
-    <p class="intro-lead">欢迎来到<b>猫护士康复室</b>！<br>完成 <b>5 个任务</b>，就能康复出院</p>
+    <p class="intro-lead">欢迎来到<b>击毙病毒</b>小游戏！<br>完成 <b>5 个任务</b>，就能通关啦</p>
     <div class="intro-tasks">
       <span class="intro-task"><img src="assets/icon-syringe-gun.png" alt="">击毙病毒</span>
       <span class="intro-task"><img src="assets/game-energy.png" alt="">能量补给</span>
@@ -862,10 +862,10 @@ body.mani-cursor #maniCursor{display:block;}
 <!-- 出院派对 -->
 <div class="party-modal" id="partyModal">
   <div class="party-box">
-    <div class="party-ribbon">🎊 出院啦 🎊</div>
+    <div class="party-ribbon">🎊 通关啦 🎊</div>
     <img class="party-mascot" src="assets/mascot.png" alt="">
     <div class="party-stars">⭐⭐⭐⭐⭐</div>
-    <h2>出院派对！🎉</h2>
+    <h2>通关派对！🎉</h2>
     <p>5瓶药水全亮！<br>病好就出发</p>
     <button class="btn pink" id="partyReset" style="width:100%;margin-top:10px;font-size:1.05rem;">🔄 再玩一次</button>
   </div>
@@ -877,13 +877,13 @@ body.mani-cursor #maniCursor{display:block;}
     <img class="topbar-cat" src="assets/mascot.png" alt="护士小猫">
     <div class="topbar-title">
       <h1>击毙病毒</h1>
-      <div class="sub">康复大作战</div>
+      <div class="sub">一起来闯关</div>
     </div>
     <img class="topbar-deco topbar-deco-heart" src="assets/deco-heart.png" alt="">
     <img class="topbar-deco topbar-deco-star" src="assets/deco-star-blue.png" alt="">
   </div>
 
-  <div class="banner" id="partyBanner">5 个任务 · 出院派对 🎉</div>
+  <div class="banner" id="partyBanner">5 个任务 · 通关派对 🎉</div>
 
     <div class="meds-stage">
       <img class="stage-deco" src="assets/deco-heart.png" alt="">
@@ -1176,8 +1176,8 @@ const praiseBox=document.getElementById('praiseBox'),praiseEmoji=document.getEle
   praiseText=document.getElementById('praiseText'),praiseSub=document.getElementById('praiseSub');
 const PRAISES=[
   {e:'🎉',t:'太棒了！',s:'快好了，我们快好了！💪',star:3},
-  {e:'⭐',t:'好厉害！',s:'离出院又近一步啦~',star:3},
-  {e:'💖',t:'你真棒！',s:'继续加油，马上就能出院！',star:3},
+  {e:'⭐',t:'好厉害！',s:'离通关又近一步啦~',star:3},
+  {e:'💖',t:'你真棒！',s:'继续加油，马上就能通关！',star:3},
   {e:'🎀',t:'完美！',s:'这关过了，再玩一个？',star:3},
   {e:'🌸',t:'真不错！',s:'今天的你超级厉害！',star:2},
   {e:'✨',t:'厉害！',s:'快好啦，加油加油！',star:3}
@@ -2220,12 +2220,18 @@ function ensureSealCursor(){ if(!sealCursor){sealCursor=document.createElement('
 function moveSealCursor(x,y){if(!sealCursor)return;sealCursor.style.left=x+'px';sealCursor.style.top=y+'px';}
 document.addEventListener('mousemove',(e)=>{if(document.body.classList.contains('seal-mode'))moveSealCursor(e.clientX,e.clientY);});
 document.addEventListener('touchmove',(e)=>{if(document.body.classList.contains('seal-mode')&&e.touches[0])moveSealCursor(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
+/* 指针事件：真机（尤其拼豆网格会 preventDefault pointer 事件）下 touchmove 不一定冒泡到 document，
+   改用 pointermove 保证浮动光标在所有设备跟手（seal/mani 共用） */
+document.addEventListener('pointermove',(e)=>{if(document.body.classList.contains('seal-mode'))moveSealCursor(e.clientX,e.clientY);});
 /* 涂色：刷子/镊子浮动光标（与亮油同一套思路，手机也能看见） */
 let maniCursor=null;
 function ensureManiCursor(){ if(!maniCursor){maniCursor=document.createElement('div');maniCursor.id='maniCursor';maniCursor.innerHTML='<img src="assets/cursor-brush-big.png" alt="" style="width:100%;height:auto;display:block;">';document.body.appendChild(maniCursor);} return maniCursor; }
 function moveManiCursor(x,y){if(!maniCursor)return;maniCursor.style.left=x+'px';maniCursor.style.top=y+'px';}
 document.addEventListener('mousemove',(e)=>{if(document.body.classList.contains('mani-cursor'))moveManiCursor(e.clientX,e.clientY);});
 document.addEventListener('touchmove',(e)=>{if(document.body.classList.contains('mani-cursor')&&e.touches[0])moveManiCursor(e.touches[0].clientX,e.touches[0].clientY);},{passive:true});
+/* 指针事件驱动：真机拼豆网格会 preventDefault pointer 事件，导致 touchmove 不一定冒泡到 document，
+   浮动镊子光标可能卡住不跟手；改由 pointermove 驱动，所有设备必然跟手 */
+document.addEventListener('pointermove',(e)=>{if(document.body.classList.contains('mani-cursor'))moveManiCursor(e.clientX,e.clientY);});
 function sealPaintAt(x,y){
   const el=document.elementFromPoint(x,y);
   const chip=el&&el.closest?el.closest('.nchip'):null;
